@@ -1,0 +1,14 @@
+<div class="head-typo typo-com collap-expand book-form inn-com-form">
+    <app-loading *ngIf="showLoading"></app-loading>
+    <form class="" [formGroup]="jamboPayFrm" (ngSubmit)="processWallet()">           
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="username" placeholder="Wallet Username">
+        </div>   
+        <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Wallet Password">
+        </div>            
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Process Payment</button>
+        </div>        
+    </form>
+</div>

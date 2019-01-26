@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <div class="white-box">      
+        <!-- form-group -->
+        <div class="form-group">
+          <label class="control-label m-t-20" for="searchticket">Search Tickets</label>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn waves-effect waves-light btn-warning" (click)="searchTicket(searchKey.value)" ><i class="fa fa-search"></i></button>
+            </span>
+            <input type="text" #searchKey (keyup.enter)="searchTicket(searchKey.value)" class="form-control" placeholder="TICKET, PHONE NUMBER OR PAYMENT ID">
+          </div>
+        </div>      
+      <!-- form-group -->
+      <p>{{values}}</p>
+    </div>
+  </div>
+</div>
+<app-loading *ngIf="showLoading"></app-loading>
+<app-ticket-details [tickets]="tickets" *ngFor="let tickets of tickets" ></app-ticket-details>
+<div class="alert alert-info" role="alert" *ngIf="noTicketFound">
+    <strong>No Ticket Matching Your Search Creteria</strong>
+  </div>

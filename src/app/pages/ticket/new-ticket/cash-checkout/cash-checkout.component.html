@@ -1,0 +1,14 @@
+<div class="">
+    <app-loading *ngIf="showLoading"></app-loading> 
+    <form [formGroup]="cashFrm" (ngSubmit)="processCash()">
+        <div class="form-group">
+            <input type="text" class="form-control" [disabled]="true" disabled formControlName="username" placeholder="Clerk Username">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Process Payment</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,75 @@
+<div (window:resize)="onResize($event)" id="theme-config" class="{{ menuType }} {{ headerType }} {{ sidebarType }} {{ themeType}}">
+  <section id="wrapper" class="login-register">
+    <app-title></app-title>
+    <div class="login-box">
+      <div class="white-box">
+        <app-loading *ngIf="showLoading" ></app-loading>
+        <div class="alert alert-success alert-dismissable" *ngIf="sucessMsg">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             {{sucessMsg}}
+        </div>
+        <div class="alert alert-danger alert-dismissable" *ngIf="errorMsg">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+             {{errorMsg}}
+        </div>
+        <form class="form-horizontal form-material" [formGroup]="signInForm" [@cardToggle]="[cardToggle === 'collapsed' ? 'expanded' : 'collapsed']">
+          <h3 class="box-title m-b-20">Sign In</h3>
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <input class="form-control" formControlName="clerk_username"  placeholder="Username">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input class="form-control" type="password" formControlName="clerk_password"  placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <div class="checkbox checkbox-primary pull-left p-t-0">
+                <input id="checkbox-signup" type="checkbox">
+                <label for="checkbox-signup"> Remember me </label>
+              </div>
+              <a href="javascript:" id="to-recover" class="text-dark pull-right" (click)="toggleCard()"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a> </div>
+          </div>
+          <div class="form-group text-center m-t-20">
+            <div class="col-xs-12">
+              <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light" (click)="doLogin()">Log In</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+              <div class="social">
+                <a href="javascript:" class="btn  btn-facebook" data-toggle="tooltip" title="Login with Facebook"> <i class="fa fa-facebook"></i> </a>
+                <a href="javascript:" class="btn btn-googleplus" data-toggle="tooltip" title="Login with Google"> <i class="fa fa-google-plus"></i> </a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group m-b-0">
+            <div class="col-sm-12 text-center">
+              <p>Don't have an account? <a [routerLink]="['/extra-pages/register']" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+            </div>
+          </div>
+        </form>
+        <form [@cardToggleInverse]="cardToggle" class="form-horizontal" id="recoverform">
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <h3>Recover Password</h3>
+              <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
+            </div>
+          </div>
+          <div class="form-group ">
+            <div class="col-xs-12">
+              <input class="form-control" required="" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group text-center m-t-20">
+            <div class="col-xs-12">
+              <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light">Reset</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

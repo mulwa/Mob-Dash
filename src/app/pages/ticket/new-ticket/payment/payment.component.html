@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-lg-12 col-md-6 col-sm-12">
+    <div class="white-box">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Seat No</th>
+              <th>Passenger Name</th>
+              <th>Phone Number</th>
+              <th>Reference No</th>
+              <th>Payment Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticket of mytickets">
+                <td>{{ticket.seat}}</td>
+                <td>{{ticket.name}}</td>
+                <td>{{ticket.msisdn}}</td>
+                <td>{{ticket.reference_number}}</td>                
+              <td><span class="label label-danger">{{ticket.status}}</span> </td>
+            </tr>            
+            <tr>
+              <td colspan="3"></td>
+                <td> <p class ="bigFont">Payable Amount</p></td>
+                <td> <p class ="bigFont">{{ticketCost}}</p> </td>                
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- white-box -->
+  </div>
+</div>
+<div class="row">
+  <div class="white-box col-md-12">
+    <h2>Select Payment Method</h2>
+    <hr>
+    <ul class="pay-nav">
+      <li [ngClass]=" showCash ? 'active': 'in-active'" (click)="showCashWidget()">Cash</li>      
+      <li [ngClass]="showMpesa ? 'active': 'in-active' " (click)="showMpesaWidget()">mpesa</li>      
+      <li [ngClass]="showJamboPay ? 'active': 'in-active' "  (click)="showJamboPayWidget()">Jambo Pay Wallet</li>
+      <li>Bank Card</li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class=" white-box col-md-12">         
+      <div class="row">
+        <div class="col-md-8">
+          <app-mpesa-checkout *ngIf="showMpesa" [mpesaReference]="reference_no"></app-mpesa-checkout>
+          <app-wallet-checkout *ngIf="showJamboPay" [mpesaReference]="reference_no"></app-wallet-checkout>
+          <app-cash-checkout *ngIf="showCash" [mpesaReference]="reference_no"></app-cash-checkout>
+          <div *ngIf=" !showMpesa && !showJamboPay && !showCash" class="">
+            <p>Please Select Your Payment Method</p>
+          </div>
+        </div>
+      </div>    
+  </div>
+</div>
