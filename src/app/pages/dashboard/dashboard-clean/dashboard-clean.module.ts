@@ -9,7 +9,7 @@ export const CleanRoutes: Routes = [
     path: '',
     component: DashboardCleanComponent,
     data: {
-      heading: 'Clean Dashboard'
+      heading: 'Dashboard'
     }
   }
 ];

@@ -1,0 +1,97 @@
+<div class="panel panel-inverse">
+  <div class="panel-heading">TICKETING AGENT SUMMARY
+    <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a> <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a> </div>
+  </div>
+  <div class="panel-wrapper collapse in" aria-expanded="true">
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <div class="white-bo">                  
+              <div class="dt-responsive">
+                <div class="row full-data-header">
+                  <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div>
+                      <label class="label-control">Show
+                        <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                        <option [ngValue]="5">5</option>
+                          <option [ngValue]="10">10</option>
+                          <option [ngValue]="25">25</option>
+                          <option [ngValue]="50">50</option>
+                          <option [ngValue]="100">100</option>
+                        </select>
+                        entries
+                      </label>
+                    </div>
+                  </div> 
+                  <div class="col-xs-12 col-sm-6 col-md-6">
+                    <div style="text-align: right;">
+                      <label>Search:
+                        <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search" placeholder="Search name">
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="panel-heading">User information</div>-->
+                <div class="table-responsive">
+                <table class="table table-striped  full-data-table"
+                       [mfData]="data | dataFilter : filterQuery"
+                       #mf="mfDataTable"
+                       [mfRowsOnPage]="rowsOnPage"
+                       [(mfSortBy)]="sortBy"
+                       [(mfSortOrder)]="sortOrder">
+                  <thead>
+                  <tr>
+                    <th>
+                      <mfDefaultSorter  by="name">Ticketing Agent</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter  by="received">Received</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="reference">Reference</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter  by="banked">Banked</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="due">Due</mfDefaultSorter>
+                    </th>                    
+                  </tr>
+                  <tr>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let item of mf.data">
+                    <td>{{item.name}}</td>
+                    <td>{{item.received | currency : 'KES'}}</td>
+                    <td>{{item.reference_number}}</td>
+                    <td>{{item.banked | currency : 'KES'}}</td>
+                    <td>{{item.due | currency : 'KES'}}</td>                    
+                  </tr>
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Ticketing Agent</th>
+                    <th>Receied</th>
+                    <th>Reference</th>
+                    <th>Banked</th>
+                    <th>Due</th>                   
+                  </tr>
+                  <tr>
+                    <td colspan="5">
+                      <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                    </td>
+                  </tr>
+                  </tfoot>
+                </table>
+                </div>
+                </div>
+            </div>
+          </div>     
+    </div>
+  </div>
+</div>
+
+
+
+
+  

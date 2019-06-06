@@ -26,9 +26,9 @@ export class TitleComponent {
           });
         } while (currentRoute);
         if (title) {
-          this.titleService.setTitle( 'Cubic | ' + title );
+          this.titleService.setTitle( 'Mobi | ' + title );
         } else {
-          this.titleService.setTitle('Cubic');
+          this.titleService.setTitle('Mobi-Ticket');
         }
       });
   }

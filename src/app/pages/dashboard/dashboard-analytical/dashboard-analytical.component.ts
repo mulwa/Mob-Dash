@@ -1,81 +1,91 @@
+import { RegNumber } from './../../../models/DashboardModel/organizationAccount';
+import { Vehicle } from './../../../models/DashboardModel/ticketReport';
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
+import { TicketingService } from '../../../services/ticketing.service';
+import { Agent, Office, IDate } from '../../../models/DashboardModel/ticketReport';
+import { Ticket } from '../../../models/ticketRes';
 declare var $: any;
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-dashboard-analytical',
   templateUrl: './dashboard-analytical.component.html',
-  styleUrls: ['../../../../assets/plugins/css-chart/css-chart.css']
+  styleUrls: ['../../../../assets/plugins/css-chart/css-chart.css'],
+  providers: [DatePipe]
 })
-export class DashboardAnalyticalComponent implements OnInit {
-  lineChartData = {
-    series: [
-      [2, 3, 4, 4, 3, 2, 2, 3, 4, 4.9, 5.5, 6, 6, 5, 4, 4, 5, 6, 7]
-    ]
-  };
+export class DashboardAnalyticalComponent implements OnInit { 
+  public toAgent = "mesage to agent page"
+  public AgentData:Agent[];
+  public OfficeData:Office[];
+  public DateData:IDate[];
+  public TicketData:Ticket[];
+  public VehicleData: Vehicle[];   
+  public totalReceived;
+  public totalBanked;
+  public totalDue;
 
-  lineChartOption = {
-    low: 0,
-    showArea: true,
-    fullWidth: true,
-    height: '80px'
-  };
+  public reg_numberData:RegNumber[];
+  public totalCashIn;
+  public totalCashOut;
+  public totalTickets;
+  public showLoading:boolean = true;
+  public currentDate;
+  defaultDateSelected: Date;
 
-  barChartData = {
-    series: [
-      [10, 10, 10, 10, 10, 10, 10],
-      [5, 3, 7, 6, 8, 2, 4]
-    ]
-  };
-
-  barChartOption = {
-    high: 10,
-    low: 0,
-    stackBars: true,
-    fullWidth: true,
-    height: '80px'
-  };
-
-  lineChartData1 = {
-    labels: [0, 5, 10, 15, 20, 25],
-    series: [
-      [40, 10, 33, 18, 27, 45],
-      [10, 24, 37, 11, 30, 25]
-    ]
-  };
-
-  lineChartOption1 = {
-    high: 50,
-    low: 0,
-    height: '300px',
-    showArea: false,
-    fullWidth: true,
-    axisY: {
-      onlyInteger: true,
-      showGrid: false,
-      offset: 20,
-    }
-  };
-
-  constructor() { }
+  constructor(private ticketService:TicketingService, private datePipe: DatePipe) { 
+    this.currentDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.defaultDateSelected = new Date(this.currentDate);
+  }
 
   ngOnInit() {
-    $('.knob').each(function() {
-      const elm = $(this);
-      const perc = elm.attr('value');
+    this.generateReport(this.currentDate,this.currentDate);
 
-      elm.knob();
-
-      $({ value: 0 }).animate({ value: perc }, {
-        duration: 1000,
-        easing: 'swing',
-        progress: function() {
-          elm.val(Math.ceil(this.value)).trigger('change');
-        }
-      });
-    });
-
-    $('[data-plugin="knob"]').knob();
+    this.ticketService.getOrganizationAccount().subscribe(data => {
+      this.showLoading = false;
+      this.reg_numberData = data.reg_numbers;
+      console.log(this.reg_numberData)
+      this.totalCashIn = this.reg_numberData.map(x => parseInt(x.total_cash_in)).reduce((a,b)=> a+b);
+      this.totalCashOut = this.reg_numberData.map(x => parseInt(x.total_cash_out)).filter((x) => x > 0).reduce((a,b)=> a+b);
+      console.log('total cashout'+this.totalCashOut)
+     
+    });   
+    
+    
   }
+  generateReport(todate,fromdate){
+    this.showLoading = true;
+    let todatefor;
+    let fromdatefor
+    if(typeof(todate.inputText) != "undefined" && typeof(todate.inputText) != "undefined"){
+      todatefor = todate.inputText.replace(/\//g, "-");
+      fromdatefor = fromdate.inputText.replace(/\//g, "-");
+    }else{
+      todatefor = this.currentDate;
+      fromdatefor = this.currentDate
+
+    }
+    
+    console.log(todatefor +fromdatefor)
+
+    this.ticketService.getTicketingReport(fromdatefor,todatefor).subscribe(data =>{
+      this.showLoading = false;
+      console.log(data.agents)
+      this.AgentData = data.agents;
+      this.OfficeData = data.offices;
+      this.DateData = data.dates;
+      this.TicketData = data.tickets;
+      this.VehicleData = data.vehicles;
+
+     this.totalReceived = this.AgentData.map(x => x.received).reduce((a,b)=>a+b);
+     this.totalBanked = this.AgentData.map(x=>x.banked).reduce((a,b) => a+b)
+     this.totalDue = this.AgentData.map(x => x.due).reduce((a,b)=>a+b)
+     this.totalTickets = this.VehicleData.map(x => x.tickets).reduce((a,b)=> a+b);
+    }); 
+
+
+  }
+  
 
 }

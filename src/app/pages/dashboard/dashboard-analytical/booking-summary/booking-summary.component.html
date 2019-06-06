@@ -1,0 +1,128 @@
+<div class="panel panel-inverse">
+    <div class="panel-heading">BOOKING, TICKETING AND PAYMENTS SUMMARY
+      <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a> <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a> </div>
+    </div>
+    <div class="panel-wrapper collapse in" aria-expanded="true">
+      <div class="panel-body">
+          <div class="col-sm-12">
+              <div class="white-bo">                  
+                <div class="dt-responsive">
+                  <div class="row full-data-header">
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                      <div>
+                        <label class="label-control">Show
+                          <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                          <option [ngValue]="5">5</option>
+                            <option [ngValue]="10">10</option>
+                            <option [ngValue]="25">25</option>
+                            <option [ngValue]="50">50</option>
+                            <option [ngValue]="100">100</option>
+                          </select>
+                          entries
+                        </label>
+                      </div>
+                    </div> 
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                      <div style="text-align: right;">
+                        <label>Search:
+                          <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search" placeholder="Search name">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="panel-heading">User information</div>-->
+                  <div class="table-responsive">
+                  <table class="table table-striped  full-data-table"
+                         [mfData]="data | dataFilter : filterQuery"
+                         #mf="mfDataTable"
+                         [mfRowsOnPage]="rowsOnPage"
+                         [(mfSortBy)]="sortBy"
+                         [(mfSortOrder)]="sortOrder">
+                    <thead>
+                    <tr>
+                      <th>
+                        <mfDefaultSorter  by="name">Passanger Name</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter  by="position">Vehicle</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter by="office">Reference</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter  by="age">From</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter by="start-date">To</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter  by="age">Travel Date</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter by="start-date">Booking Date</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter  by="age">Ticket No</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter by="start-date">PNR Locator</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter  by="age">Fare</mfDefaultSorter>
+                      </th>
+                      <th>
+                        <mfDefaultSorter by="start-date">Agent</mfDefaultSorter>
+                      </th>                       
+                    </tr>
+                    <tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of mf.data">
+                      <td>{{item.name}}</td>
+                      <td>{{item.vehicle_name}}</td>
+                      <td>{{item.reference_number}}</td>
+                      <td>{{item.travel_from}}</td>
+                      <td>{{item.travel_to}}</td> 
+                      <td>{{item.travel_date}}{{item.travel_time}}</td>
+                      <td>{{item.payment_date}}</td>
+                      <td>{{item.bus_company_ref_number}}</td>                      
+                      <td>{{item.bus_company_ref_number}}</td>
+                      <td>{{item.amount | currency: 'KES'}}</td>                       
+                      <td>{{item.served_by}}</td>                  
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                      <th>Passanger Name</th>
+                      <th>Vehicle</th>
+                      <th>Reference</th>
+                      <th>From</th>
+                      <th>To</th> 
+                      <th>Travel Date</th>
+                      <th>Booking Date</th>
+                      <th>Ticket No</th>
+                      <th>PNR Locator</th>
+                      <th>Fare</th> 
+                      <th>Agent</th>                 
+                    </tr>
+                    <tr>
+                      <td colspan="11">
+                        <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+                      </td>
+                    </tr>
+                    </tfoot>
+                  </table>
+                  </div>
+                  </div>
+              </div>
+            </div>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+    

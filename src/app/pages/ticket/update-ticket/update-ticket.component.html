@@ -1,3 +1,84 @@
-<p>
-  update-ticket works!
-</p>
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <div class="white-box">      
+        <!-- form-group -->
+        <div class="form-group">
+          <label class="control-label m-t-20" for="searchticket">Update Tickect</label>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn waves-effect waves-light btn-warning" (click)="searchTicket(searchKey.value)" ><i class="fa fa-search"></i></button>
+            </span>
+            <input type="text" #searchKey (keyup.enter)="searchTicket(searchKey.value)" class="form-control" placeholder="Ticket Reference Number">
+          </div>
+        </div>      
+      <!-- form-group -->      
+    </div>
+  </div>
+</div>
+<app-loading *ngIf="showLoading"></app-loading>
+
+<!-- <div class="alert alert-info" role="alert" *ngIf="noTicketFound">
+    <strong>No Ticket Matching Your Search Creteria</strong>
+  </div> -->
+  <!-- /.row -->
+<app-loading *ngIf="updatingTicket"></app-loading>
+<div class="row" *ngIf="!showLoading && tickets.length > 0">
+  <div class="col-md-12 col-sm-12">
+    <div class="panel panel-info">
+      <div class="panel-heading"> Ticket Details</div>
+      <div class="panel-wrapper collapse in" aria-expanded="true">
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table product-overview">
+              <thead>
+              <tr>
+                <th>Passenger Name</th>
+                <th>Vehicle Name</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Traveling Date</th>
+                <th>Booking Date</th>
+                <th>Fare</th>
+                <th>Served By</th>
+                <th>Status</th>
+              </tr>
+              </thead>              
+              <tbody>
+              <tr *ngFor="let ticket of tickets">
+                <td>{{ticket.name}}</td>
+                <td>{{ticket.vehicle_name}}</td>
+                <td>{{ticket.travel_from}}</td>
+                <td>{{ticket.travel_to}}</td>
+                <td>{{ticket.travel_date}} </td> 
+                <td>{{ticket.payment_date}} </td>           
+                <td>{{ticket.amount}}</td> 
+                <td>{{ticket.served_by}}</td>               
+                <td>{{ticket.status}}</td>
+              </tr>                           
+              </tbody>
+            </table>
+            <hr>
+            <button class="btn btn-primary" *ngIf="ticket_status =='confirmed'" (click)="onCancelTicket()"><i class="fa fa-arrow-left"></i> Cancel Ticket</button>
+            <div *ngIf="ticket_status =='cancelled'">
+              <h4>Enter Mpesa Reference Code if booked Online</h4>
+              <div class="ro">
+                <div class="col-md-4">
+                    <input type="text" [(ngModel)]="paymentId" class="form-control" placeholder="Enter Payment Id ">
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success"  (click)="onConfirmTicket()" >Confirm Ticket</button>
+                </div>
+              </div>      
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+<!--row -->
+<div class="alert alert-info" role="alert" *ngIf="noTicketFound">
+    <strong>No Ticket Matching Your Search Creteria</strong>
+  </div>
+

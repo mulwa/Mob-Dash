@@ -15,6 +15,7 @@ import { SharedModule } from './shared/shared.module';
 import { TicketingService } from './services/ticketing.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './guards/auth-guard.service';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
@@ -34,6 +35,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
     RouterModule.forRoot(AppRoutes),
     SharedModule,
     FormsModule,
+    // NgSelectModule,
     HttpClientModule
     
   ],

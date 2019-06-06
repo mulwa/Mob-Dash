@@ -1995,3 +1995,9 @@ ngb-progressbar .progress-bar {
         width: 100% !important;
     }
 }
+
+.table-responsive td{
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+}

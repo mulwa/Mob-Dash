@@ -9,7 +9,7 @@ export const ModernRoutes: Routes = [
     path: '',
     component: DashboardModernComponent,
     data: {
-      heading: 'Modern Dashboard'
+      heading: 'Dashboard'
     }
   }
 ];

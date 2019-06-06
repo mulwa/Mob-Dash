@@ -1,33 +1,36 @@
 <div class="col-md-12 col-xs-12">
-  <div class="white-box" *ngFor="let bus of availableBuses" (click)="LoadVehicle(bus)">    
-    <div class="user-btm-box">      
-      <!-- .row -->
-      <div class="row text-center m-t-10">
-        <div class="col-md-4 b-r"><strong>Vehicle</strong>
-          <p> {{bus.route}}</p>
+    <div class="white-box" *ngFor="let bus of availableBuses">    
+      <div class="user-btm-box">      
+        <!-- .row -->
+        <div class="row text-center m-t-10">
+          <div class="col-md-4 b-r"><strong>Vehicle</strong>
+            <p> {{bus.route}}</p>
+          </div>
+          <div class="col-md-4 b-r"><strong>Departure Time</strong>
+            <p>{{bus.departure_time.split(",")[1]}}</p>
+          </div>
+          <div class="col-md-4"><strong>Available Seats</strong>
+            <p>{{bus.seats_available - 2}}</p>
+          </div>
         </div>
-        <div class="col-md-4 b-r"><strong>Departure Time</strong>
-          <p>{{bus.departure_time.split(",")[1]}}</p>
+        <!-- /.row -->
+        <hr>
+        <!-- .row -->
+        <div class="row text-center m-t-10">
+          <div class="col-md-4 b-r"><strong>Destinations =></strong>
+            <span class="des-list" *ngFor="let des of bus.destinations">
+              {{des.split("-")[0]}}
+            </span>
+          </div>
+          <div class="col-md-4 b-r"><strong>Fare per passenger</strong>
+            <p>{{bus.price[0].name.split("-")[2]}}</p>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-primary btn-book" (click)="LoadVehicle(bus)"> Book </button>
+          </div>
         </div>
-        <div class="col-md-4"><strong>Available Seats</strong>
-          <p>{{bus.seats_available - 2}}</p>
-        </div>
+        <hr>
+        <!-- /.row -->     
       </div>
-      <!-- /.row -->
-      <hr>
-      <!-- .row -->
-      <div class="row text-center m-t-10">
-        <div class="col-md-6 b-r"><strong>Destinations =></strong>
-          <span class="des-list" *ngFor="let des of bus.destinations">
-            {{des.split("-")[0]}}
-          </span>
-        </div>
-        <div class="col-md-6"><strong>Fare per passenger</strong>
-          <p>{{bus.price[0].name.split("-")[2]}}</p>
-        </div>
-      </div>
-      <hr>
-      <!-- /.row -->     
     </div>
   </div>
-</div>

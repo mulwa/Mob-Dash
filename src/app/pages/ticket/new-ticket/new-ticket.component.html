@@ -10,52 +10,51 @@
                 <h3 class="box-title">VEHICLE AVAILABILITY</h3>
                 <hr class="m-t-0 m-b-40">
                 <div class="row">
-                  <form [formGroup]="searchForm" class="form-horizontal" (ngSubmit)="onSearch()">
-
-                    <div class="col-md-3">
+                  <div  class="form-horizontal">
+                    <div class="col-md-4">
                       <div class="form-group">
                         <div class="col-md-12">
-                          <select name="from" formControlName="from" class="form-control select2" required="">
-                            <option selected value="">From ...</option>
-                            <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
-                          </select>
+                            <h5 class="m-t-30">Traveling From</h5>
+                          <ng-select [ngClass]="'ng-select'" [options]="searchableselect" [(ngModel)]="travel_from"> </ng-select>                        
                         </div>
                       </div>
                     </div>
                     <!--/span-->
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                       <div class="form-group">
                         <div class="col-md-12">
-                          <select formControlName="to_id" class="form-control select2" required="">
-                            <option selected value="">To ...</option>
-                            <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
-                          </select>
+                            <h5 class="m-t-30">Traveling To</h5>
+                          <ng-select [ngClass]="'ng-select'" [options]="searchableselect" [(ngModel)]="travel_to"> </ng-select>
                         </div>
                       </div>
                     </div>
                     <!--/span-->
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                       <div class="form-group">
                         <div class="col-md-12">
-                          <select formControlName="travel_date" class="form-control select2" required="">
+                            <h5 class="m-t-30">Traveling Date</h5>
+                          <select  class="form-control select2" [(ngModel)]="travel_date" placeholder="select travelling date"  >
                             <option selected value="">Date ...</option>
-                            <option *ngFor="let dates of traveling_dates" [value]="dates.name">{{dates.name}}</option>
+                            <option *ngFor="let dates of traveling_dates"  [value]="dates.name">{{dates.name}}</option>
                           </select>
                         </div>
                       </div>
                     </div>
-                    <!--/span-->
-                    <div class="col-md-2">
-                      <div class="form-group">
-                        <div class="col-md-12">
-                          <button type="submit" [disabled]="!searchForm.valid" class="btn btn-info">Search Vehicles</button>
-                        </div>
-                      </div>
-                    </div>
-                    <!--/span-->
-                  </form>
+                    <!--/span-->                   
+                  </div>
+                  <!-- form -->
                 </div>
-                <!--/row-->
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="form-group">
+                          <div class="col-md-12">                           
+                            <button type="submit"  class="btn btn-info btn-book" (click)="onSearch()">Search Vehicles</button>
+                          </div>
+                        </div>
+                      </div>                    
+                      <!--/span-->
+                </div>                
+                <!--/row-->              
               </div>
             </div>
           </div>

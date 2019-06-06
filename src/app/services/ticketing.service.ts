@@ -1,5 +1,6 @@
+import { OrganizationAccount } from './../models/DashboardModel/organizationAccount';
 import { Injectable } from '@angular/core';
-import {  hash, ReferenceNumberUrl, username } from '../models/constants';
+import {  hash, ReferenceNumberUrl, username, api_key } from '../models/constants';
 import { TicketResponse } from '../models/ticketRes';
 import { HttpClient } from '@angular/common/http';
 import { LocationResponse } from '../models/location-response';
@@ -11,7 +12,10 @@ import { ReservationRes } from '../models/reservationResponse';
 import { Reservation } from '../models/reservationI';
 import { mpesaResponse } from '../models/mpesaRes';
 import { responseI } from '../models/response.1';
+import { TicketReport} from '../models/DashboardModel/ticketReport'
 import { AuthenticationService } from './authentication.service';
+import { City } from '../models/city';
+import {ticketUpdateI} from '../models/DashboardModel/ticketUpdate'
 
 @Injectable()
 export class TicketingService {
@@ -164,8 +168,52 @@ export class TicketingService {
   
   }
 
+  getTicketingReport(startDate:string, endDate:string){
+    let body = {
+      username:username,
+      api_key:api_key,
+      action:"TicketingReport",
+      from:startDate,
+      to:endDate
+
+    }
+    return this.http.post<TicketReport>(this.base_url,body);
+  }
+  getOrganizationAccount(){
+    let body = {
+      username:username,
+      api_key:api_key,
+      action:"OrganizationAccountBalances",
+    }
+    return this.http.post<OrganizationAccount>(this.base_url,body)
+  }
+
+  onTicketUpdate(ticketRef,ticketNo,payment_id,status){
+    let body = {
+      developer_username:"rWIv7GWzSp",
+      developer_api_key:"831b238c5cd73308520e38bbc6c1774f470a89e96d07a5bb6bcac3b86456f889",
+      action:"updateticket",
+      reference_number:ticketRef,
+      payment_id:payment_id,
+      reg_number:"",
+      status: status,
+      bus_url:"enacoach.mobiticket.co.ke/apis/changeStatus.php",
+      bus_company_ref_number:ticketNo,
+      hash:"1FBEAD9B-D9CD-400D-ADF3-F4D0E639CEE0"     
+
+    }
+    return this.http.put<ticketUpdateI>("http://localhost:9090/https://apis.mobiticket.co.ke/v3/core/ticketpayments",body).toPromise()
+  }
+
+ cloneOptions(options: City[]): Array<IOption> {
+    return options.map(option => ({ value: option.id, label: option.name }));
+  }
+
+
+
+}
+export interface IOption {
+  value: string;
+  label: string;
   
-
-
-
 }

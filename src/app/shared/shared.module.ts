@@ -29,6 +29,8 @@ import {ChartistModule} from 'ng-chartist';
 import {QuillEditorModule} from 'ngx-quill-editor';
 import {HorizontalTimelineModule} from "./horizontal-timeline/horizontal-timeline.module";
 import { LoadingComponent } from './loading/loading.component';
+import { TicketDetailsComponent } from '../pages/ticket/ticket-details/ticket-details.component';
+// import { TicketDetailsComponent } from '../pages/ticket/ticket-details/ticket-details.component';
 
 
 @NgModule({
@@ -63,6 +65,7 @@ import { LoadingComponent } from './loading/loading.component';
     SpinnerComponent,
     LoadingComponent,
     TitleComponent,
+    TicketDetailsComponent,
     DataFilterPipe
   ],
   exports: [
@@ -93,7 +96,8 @@ import { LoadingComponent } from './loading/loading.component';
     DatepickerModule,
     ChartistModule,
     QuillEditorModule,
-    HorizontalTimelineModule
+    HorizontalTimelineModule,
+    TicketDetailsComponent
   ],
   providers: [
     MenuItems,

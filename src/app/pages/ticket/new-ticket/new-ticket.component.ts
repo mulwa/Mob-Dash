@@ -25,29 +25,29 @@ export class NewTicketComponent implements OnInit {
   noVehicles:boolean = false;
   from_id:any;
   to_id:any;
+  selectedOption = '21';
+  searchableselect;
+  travel_from ='21';
+  travel_to = '16';
+  travel_date;
+
   
   constructor(private fb:FormBuilder, private ticketingService:TicketingService, private datePipe: DatePipe,) { }
 
-  ngOnInit() {
-    this.initializeForm()
+  ngOnInit() {    
     this.getCity()
     this.getTravelingDates()
 
     this.currentTime = this.datePipe.transform(this.currentTime, 'H:m');
     this.currentDate = this.datePipe.transform(this.currentDate, 'dd-MM-yyyy')
   }
-  initializeForm(){
-    this.searchForm = this.fb.group({
-      from:['', Validators.required],
-      to_id:['',Validators.required],
-      travel_date:['',Validators.required]
-      
-    })
-  }
+ 
   getCity(){
     this.ticketingService.getCitites().subscribe(data =>{
       this.cities = data.cities;
-      console.log(this.cities)
+      // console.log(this.searchableselect)
+     this.searchableselect = this.ticketingService.cloneOptions(data.cities)
+     console.log(this.searchableselect)
     },error =>{
       console.log(`An Error has Occured ${error.message}`)
     })
@@ -60,27 +60,24 @@ export class NewTicketComponent implements OnInit {
       console.log(`An Error Has Occured fetching Traveling Dates ${error.message}`)
     })
   }
-  onSearch(){
+  onSearch(){    
     this.noVehicles = false
     if(this.availableBuses.length > 0){
       this.availableBuses = []
     }    
     this.showLoading = true;
-     this.from_id = this.searchForm.get('from').value;
-    this.to_id = this.searchForm.get('to_id').value;
-    this.traveling_date = this.searchForm.get('travel_date').value;
-    console.log('searching '+this.searchForm.get('from').value);
+     this.from_id = this.travel_from
+    this.to_id = this.travel_to
+    this.traveling_date = this.travel_date   
     
     this.ticketingService.getAvaliableVehicle(this.from_id,this.to_id,this.traveling_date).subscribe(data =>{
       this.showLoading = false;
       if(data.bus.length > 0){
         data.bus.forEach((x) => {
-          let deptureTime = x.departure_time.split(',')[1];
-          console.log('Time Difference' + this.calculateTimeDiff(this.currentTime, deptureTime))
-          if (this.calculateTimeDiff(this.currentTime, deptureTime) < 1) {
+          let deptureTime = x.departure_time.split(',')[1];         
             this.availableBuses.push(x)
             console.log(x)
-          }
+          
         }) //end foreach
 
       }else{
