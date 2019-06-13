@@ -56,7 +56,8 @@ import { TicketDetailsComponent } from '../pages/ticket/ticket-details/ticket-de
     DatepickerModule,
     ChartistModule,
     QuillEditorModule,
-    HorizontalTimelineModule
+    HorizontalTimelineModule,
+    
   ],
   declarations: [    
     AccordionAnchorDirective,

@@ -59,7 +59,7 @@
             </table>
             <hr>
             <button class="btn btn-primary" *ngIf="ticket_status =='confirmed'" (click)="onCancelTicket()"><i class="fa fa-arrow-left"></i> Cancel Ticket</button>
-            <div *ngIf="ticket_status =='cancelled'">
+            <div *ngIf="ticket_status =='cancelled'|| ticket_status =='pending'">
               <h4>Enter Mpesa Reference Code if booked Online</h4>
               <div class="ro">
                 <div class="col-md-4">

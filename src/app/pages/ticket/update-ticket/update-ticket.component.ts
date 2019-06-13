@@ -2,6 +2,7 @@ import { TicketingService } from './../../../services/ticketing.service';
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from '../../../models/ticketRes';
 
+
 @Component({
   selector: 'app-update-ticket',
   templateUrl: './update-ticket.component.html',
@@ -19,6 +20,7 @@ export class UpdateTicketComponent implements OnInit {
   constructor(public ticketingService:TicketingService) { }
 
   ngOnInit() {
+   
   }
 
   searchTicket(searchKey){
@@ -78,6 +80,7 @@ export class UpdateTicketComponent implements OnInit {
     console.log(`updating ticket ${result.response_message} ticket ${loop_counter} of ${noOfTickets}`)
     if(loop_counter == noOfTickets){
       this.updatingTicket = false;
+      this.paymentId =""
       console.log(`Done updateting all tickets ${result}`)
       this.searchTicket(ticket.reference_number)
     }

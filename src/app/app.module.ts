@@ -20,6 +20,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import { NgSelectModule } from '@ng-select/ng-select';
     SharedModule,
     FormsModule,
     // NgSelectModule,
-    HttpClientModule
+    HttpClientModule,
+   
+    
     
   ],
   providers: [
