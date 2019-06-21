@@ -17,6 +17,9 @@ export class UpdateTicketComponent implements OnInit {
   current_ticket;
   paymentId:string;
 
+  noOfTickets:number;
+  ticketUpdateLoop:number=0;
+
   constructor(public ticketingService:TicketingService) { }
 
   ngOnInit() {
@@ -71,15 +74,16 @@ export class UpdateTicketComponent implements OnInit {
 
   updateTicket = async (ticketArray:Ticket[],paymentId:string, status:string)=>{
     this.updatingTicket = true;
-     var noOfTickets = ticketArray.length;
-     let loop_counter = 0; 
-     console.log('total number'+noOfTickets)   
+     this.noOfTickets = ticketArray.length;
+     
+     console.log('total number'+this.noOfTickets)   
     for(let ticket of ticketArray){
-      loop_counter +=1;
+      this.ticketUpdateLoop +=1;
       let result = await this.ticketingService.onTicketUpdate(ticket.reference_number,ticket.bus_company_ref_number,paymentId,status)
-    console.log(`updating ticket ${result.response_message} ticket ${loop_counter} of ${noOfTickets}`)
-    if(loop_counter == noOfTickets){
+    console.log(`updating ticket ${result.response_message} ticket ${this.ticketUpdateLoop} of ${this.noOfTickets}`)
+    if(this.ticketUpdateLoop == this.noOfTickets){
       this.updatingTicket = false;
+      this.ticketUpdateLoop = 0;
       this.paymentId =""
       console.log(`Done updateting all tickets ${result}`)
       this.searchTicket(ticket.reference_number)

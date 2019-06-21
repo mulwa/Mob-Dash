@@ -1,0 +1,14 @@
+#updating-subtitle{
+    font-style: italic;
+    color: #fcb035;
+    
+}
+.updating-header {
+    font-weight: bold;
+    font-size: 20px;
+}
+.white-box h5,h4 {
+    width: auto;
+    align-content: center;
+    text-align: center;
+}

@@ -21,7 +21,12 @@
     <strong>No Ticket Matching Your Search Creteria</strong>
   </div> -->
   <!-- /.row -->
-<app-loading *ngIf="updatingTicket"></app-loading>
+
+<div class="white-box" *ngIf="updatingTicket">
+    <app-loading ></app-loading>
+  <h5 class="updating-header">Please Wait....</h5>
+  <h4 id="updating-subtitle">Updating  {{ticketUpdateLoop}} 0f {{noOfTickets}}</h4>
+</div>
 <div class="row" *ngIf="!showLoading && tickets.length > 0">
   <div class="col-md-12 col-sm-12">
     <div class="panel panel-info">
@@ -60,7 +65,7 @@
             <hr>
             <button class="btn btn-primary" *ngIf="ticket_status =='confirmed'" (click)="onCancelTicket()"><i class="fa fa-arrow-left"></i> Cancel Ticket</button>
             <div *ngIf="ticket_status =='cancelled'|| ticket_status =='pending'">
-              <h4>Enter Mpesa Reference Code if booked Online</h4>
+              <h3>Enter Mpesa Reference Code if booked Online</h3>
               <div class="ro">
                 <div class="col-md-4">
                     <input type="text" [(ngModel)]="paymentId" class="form-control" placeholder="Enter Payment Id ">
