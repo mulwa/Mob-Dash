@@ -1,3 +1,17 @@
-<p>
-  manage-user works!
-</p>
+<div class="row">
+  <div class="col-sm-12 col-xs-12">
+    <div class="white-box">      
+        <!-- form-group -->
+        <div class="form-group">
+          <label class="control-label m-t-20" for="searchticket">Manage User</label>
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn waves-effect waves-light btn-warning" (click)="searchUser(searchKey.value)" ><i class="fa fa-search"></i></button>
+            </span>
+            <input type="text" #searchKey (keyup.enter)="searchUser(searchKey.value)" class="form-control" placeholder="Enter Username, Phone No, Email Address">
+          </div>
+        </div>      
+      <!-- form-group -->      
+    </div>
+  </div>
+</div>
