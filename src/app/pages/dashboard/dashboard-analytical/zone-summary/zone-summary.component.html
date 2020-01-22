@@ -1,89 +1,103 @@
 <div class="panel panel-primary">
-    <div class="panel-heading">ZONE/LOCATION SUMMARY
-      <div class="pull-right"><a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a> <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a> </div>
+  <div class="panel-heading">
+    ZONE/LOCATION SUMMARY
+    <div class="pull-right">
+      <a href="#" data-perform="panel-collapse"><i class="ti-minus"></i></a>
+      <a href="#" data-perform="panel-dismiss"><i class="ti-close"></i></a>
     </div>
-    <div class="panel-wrapper collapse in" aria-expanded="true">
-      <div class="panel-body">
-          <div class="col-sm-12">
-              <div class="white-bo">                  
-                <div class="dt-responsive">
-                  <div class="row full-data-header">
-                    <div class="col-xs-12 col-sm-6 col-md-6">
-                      <div>
-                        <label class="label-control">Show
-                          <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
-                          <option [ngValue]="5">5</option>
-                            <option [ngValue]="10">10</option>
-                            <option [ngValue]="25">25</option>
-                            <option [ngValue]="50">50</option>
-                            <option [ngValue]="100">100</option>
-                          </select>
-                          entries
-                        </label>
-                      </div>
-                    </div> 
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                      <div style="text-align: right;">
-                        <label>
-                          <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search" placeholder="Search name">
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- <div class="panel-heading">User information</div>-->
-                  <div class="table-responsive">
-                  <table class="table table-striped table-bordered full-data-table"
-                         [mfData]="data | dataFilter : filterQuery"
-                         #mf="mfDataTable"
-                         [mfRowsOnPage]="rowsOnPage"
-                         [(mfSortBy)]="sortBy"
-                         [(mfSortOrder)]="sortOrder">
-                    <thead>
-                    <tr>
-                      <th>
-                        <mfDefaultSorter  by="name">Zone</mfDefaultSorter>
-                      </th>
-                      <th>
-                        <mfDefaultSorter  by="position">Tickets</mfDefaultSorter>
-                      </th>
-                      <th>
-                        <mfDefaultSorter by="office">Amount</mfDefaultSorter>
-                      </th>     
-                   
-                    </tr>
-                    <tr>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let item of mf.data">
-                      <td>{{item.name}}</td>
-                      <td>{{item.tickets}}</td>
-                      <td>{{item.received | currency : 'KES'}}</td>                     
-                    </tr>
-                    </tbody>
-                    <tfoot>
-                    <tr>
-                      <th>Zone</th>
-                      <th>Tickets</th>
-                      <th>Amount</th>                      
-                    </tr>
-                    <tr>
-                      <td colspan="3">
-                        <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
-                      </td>
-                    </tr>
-                    </tfoot>
-                  </table>
-                  </div>
-                  </div>
+  </div>
+  <div class="panel-wrapper collapse in" aria-expanded="true">
+    <div class="panel-body">
+      <div class="col-sm-12">
+        <div class="white-bo">
+          <div class="dt-responsive">
+            <div class="row full-data-header">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <div>
+                  <label class="label-control"
+                    >Show
+                    <select
+                      class="form-control input-sm full-data-show-entry"
+                      [(ngModel)]="rowsOnPage"
+                    >
+                      <option [ngValue]="5">5</option>
+                      <option [ngValue]="10">10</option>
+                      <option [ngValue]="25">25</option>
+                      <option [ngValue]="50">50</option>
+                      <option [ngValue]="100">100</option>
+                    </select>
+                    entries
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-6 col-sm-6 col-md-6">
+                <div style="text-align: right;">
+                  <label>
+                    <input
+                      type="search"
+                      [(ngModel)]="filterQuery"
+                      class="form-control input-sm full-data-search"
+                      placeholder="Search name"
+                    />
+                  </label>
+                </div>
               </div>
             </div>
-        
+            <!-- <div class="panel-heading">User information</div>-->
+            <div class="table-responsive">
+              <table
+                class="table table-striped table-bordered full-data-table"
+                [mfData]="data | dataFilter: filterQuery"
+                #mf="mfDataTable"
+                [mfRowsOnPage]="rowsOnPage"
+                [(mfSortBy)]="sortBy"
+                [(mfSortOrder)]="sortOrder"
+              >
+                <thead>
+                  <tr>
+                    <th>
+                      <mfDefaultSorter by="name">Zone</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="position">Tickets</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="office">Amount</mfDefaultSorter>
+                    </th>
+                  </tr>
+                  <tr></tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of mf.data">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.tickets }}</td>
+                    <td>{{ item.received | currency: "KES" }}</td>
+                  </tr>
+                  <tr>
+                    <td>Total</td>
+                    <td>{{ totalTickets }}</td>
+                    <td>{{ totalReceived | currency: "KES" }}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Zone</th>
+                    <th>Tickets</th>
+                    <th>Amount</th>
+                  </tr>
+                  <tr>
+                    <td colspan="3">
+                      <mfBootstrapPaginator
+                        class="pagination-main f-right"
+                      ></mfBootstrapPaginator>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
-  
-  
-  
-    
+</div>

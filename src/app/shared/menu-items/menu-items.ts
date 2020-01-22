@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from "@angular/core";
 
 export interface BadgeItem {
   type: string;
@@ -31,96 +31,111 @@ export interface Menu {
 
 const MENUITEMS = [
   {
-    label: 'Dashboard',
+    label: "Dashboard",
     main: [
       {
-        state: 'dashboard',
-        name: 'Dashboard',
-        type: 'sub',
-        icon: 'icon-screen-desktop',
+        state: "dashboard",
+        name: "Dashboard",
+        type: "sub",
+        icon: "icon-screen-desktop",
         badge: [
           {
-            type: 'info',
-            value: '3'
+            type: "info",
+            value: "3"
           }
         ],
         children: [
           {
-            state: 'clean',
-            name: 'Data Presentation'
-          },          
+            state: "clean",
+            name: "Data Presentation"
+          },
           {
-            state: 'analytical',
-            name: 'Analytical Presentation'
+            state: "analytical",
+            name: "Analytical Presentation"
           }
         ]
       },
       {
-        state: 'ticket',
-        name: 'Tickets',
-        type: 'sub',
-        icon: 'icon-notebook', 
-        children:[
-          {
-            state: 'new-ticket',
-            name: 'New Ticket'
-          },         
-          {
-            state:'search-ticket',
-            name: 'Search ticket'
-          },
-          {
-            state: 'update-ticket',
-            name: 'Update Ticket'
-          }
-
-        ]       
-      },
-      {
-        state: 'payment',
-        name: 'Payments',
-        type: 'sub',
-        icon: 'icon-notebook',
-        children:[
-          {
-            state:'search-payment',
-            name: 'Search Payment'
-          }          
-        ]        
-      },
-      {
-        state: 'users',
-        name: 'Users',
-        type: 'sub',
-        icon: 'icon-user',
-        children:[
-          {
-            state: 'add-user',
-            name: 'New User'
-          },
-          {
-            state: 'manage-user',
-            name: 'manage users'
-          }
-        ]        
-      },     
-      {
-        state: 'vehicles',
-        name: 'Vehicles',
-        type: 'sub',
-        icon: 'icon-bulb',
+        state: "ticket",
+        name: "Tickets",
+        type: "sub",
+        icon: "icon-notebook",
         children: [
           {
-            state: 'manage-vehicles',
-            name: 'Manage Vehicles'
+            state: "new-ticket",
+            name: "New Ticket"
           },
           {
-            state: 'vehicles',
-            name: 'Add Vehicles'
-          }          
+            state: "search-ticket",
+            name: "Search ticket"
+          },
+          {
+            state: "update-ticket",
+            name: "Update Ticket"
+          }
         ]
-      },     
-    ],
+      },
+      {
+        state: "payment",
+        name: "Payments",
+        type: "sub",
+        icon: "icon-notebook",
+        children: [
+          {
+            state: "search-payment",
+            name: "Search Payment"
+          }
+        ]
+      },
+      {
+        state: "user",
+        name: "Users",
+        type: "sub",
+        icon: "icon-notebook",
+        children: [
+          {
+            state: "add-user",
+            name: "New User"
+          },
+          {
+            state: "manage-user",
+            name: "manage users"
+          }
+        ]
+      },
+      {
+        state: "operator",
+        name: "Operator",
+        type: "sub",
+        icon: "icon-notebook",
+        children: [
+          {
+            state: "new-operator",
+            name: "New Operator"
+          },
+          {
+            state: "manage-operator",
+            name: "Manage Operator"
+          }
+        ]
+      },
+      {
+        state: "vehicle",
+        name: "Vehicles",
+        type: "sub",
+        icon: "icon-notebook",
+        children: [
+          {
+            state: "manage-vehicles",
+            name: "Manage Vehicles"
+          },
+          {
+            state: "add-vehicle",
+            name: "Add Vehicles"
+          }
+        ]
+      }
+    ]
   }
 ];
 

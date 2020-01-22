@@ -59,13 +59,18 @@
                       <td>{{item.tickets}}</td>
                       <td>{{item.received| currency : 'KES'}}</td>                      
                     </tr>
+                    <tr>
+                      <th>Total</th>
+                      <td>{{totalTickets}}</td>
+                      <td>{{totalReceived | currency : 'KES'}}</td>
+                    </tr>
                     </tbody>
                     <tfoot>
                     <tr>
                       <th>Item</th>
                       <th>Amount</th>
                       <th>Amount</th>                     
-                    </tr>
+                    </tr>                    
                     <tr>
                       <td colspan="6">
                         <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>

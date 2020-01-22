@@ -50,13 +50,31 @@ export const AppRoutes: Routes = [
           "./pages/ticket/update-ticket/update-ticket.module#UpdateTicketModule"
       },
       {
-        path: "users/add-user",
+        path: "user/add-user",
         loadChildren: "./pages/users/users.module#UsersModule"
       },
       {
-        path: "users/manage-user",
+        path: "vehicle/add-vehicle",
+        loadChildren: "./pages/vehicle/new-vehicle/vehicle.module#VehicleModule"
+      },
+      {
+        path: "vehicle/manage-vehicles",
+        loadChildren:
+          "./pages/vehicle/manage-vehicle/manage-vehicle.module#ManageVehicleModule"
+      },
+      {
+        path: "user/manage-user",
         loadChildren:
           "./pages/users/manage-user/manageusers.module#ManageUserModule"
+      },
+      {
+        path: "operator/new-operator",
+        loadChildren: "./pages/operator/operator.module#OperatorModule"
+      },
+      {
+        path: "operator/manage-operator",
+        loadChildren:
+          "./pages/manageoperator/manageoperator.module#ManageoperatorModule"
       },
       {
         path: "payment/search-payment",
