@@ -3,6 +3,8 @@ import { CommonModule } from "@angular/common";
 import { NewVehicleComponent } from "./NewVehicleComponent";
 import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "../../../shared/shared.module";
+import { VehiclesService } from "../../../services/vehicles.service";
+import { OperatorService } from "../../../services/operator.service";
 
 const addVehicleRoute: Routes = [
   {
@@ -14,6 +16,7 @@ const addVehicleRoute: Routes = [
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(addVehicleRoute)],
 
-  declarations: [NewVehicleComponent]
+  declarations: [NewVehicleComponent],
+  providers: [OperatorService]
 })
 export class VehicleModule {}

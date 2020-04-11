@@ -3,6 +3,7 @@ import { CommonModule } from "@angular/common";
 import { OperatorComponent } from "./operator.component";
 import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "../../shared/shared.module";
+import { OperatorService } from "../../services/operator.service";
 
 const route: Routes = [
   {
@@ -13,6 +14,7 @@ const route: Routes = [
 
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(route)],
-  declarations: [OperatorComponent]
+  declarations: [OperatorComponent],
+  providers: [OperatorService]
 })
 export class OperatorModule {}

@@ -8,7 +8,9 @@ import { Component, OnInit } from "@angular/core";
 export class ManageVehicleComponent implements OnInit {
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("ngOnit called manage");
+  }
 
   searchVehicle(vehicle) {
     console.log(vehicle);

@@ -17,6 +17,7 @@ import { AuthenticationService } from "./services/authentication.service";
 import { AuthGuardService } from "./guards/auth-guard.service";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { UsersModule } from "./pages/users/users.module";
+import { VehiclesService } from "./services/vehicles.service";
 
 @NgModule({
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
@@ -34,6 +35,7 @@ import { UsersModule } from "./pages/users/users.module";
     { provide: LocationStrategy, useClass: PathLocationStrategy },
     TicketingService,
     AuthenticationService,
+    VehiclesService,
     AuthGuardService
   ],
   bootstrap: [AppComponent]

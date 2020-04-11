@@ -27,10 +27,7 @@
                                                   <div class="form-group">
                                                       <label class="control-label col-md-3">Organization Type</label>
                                                       <div class="col-md-9">
-                                                          <select name="organization_type" class="form-control" required="">
-                                                              <option selected value="">Select ...</option>
-                                                              <option value="PRIVATE LIMITED COMPANY">PRIVATE LIMITED COMPANY</option><option value="PUBLIC LIMITED COMPANY">PUBLIC LIMITED COMPANY</option><option value="COMPANY LIMITED BY GUARANTEE">COMPANY LIMITED BY GUARANTEE</option><option value="LIMITED LIABILITY PARTNERSHIP">LIMITED LIABILITY PARTNERSHIP</option><option value="FOREIGN COMPANY">FOREIGN COMPANY</option><option value="SAVINGS AND CREDIT CO-OPERATIVE (SACCO)">SAVINGS AND CREDIT CO-OPERATIVE (SACCO)</option><option value="SOLE PROPRIETORSHIP">SOLE PROPRIETORSHIP</option><option value="OTHER">OTHER</option>
-                                                          </select>
+                                                        <ng-select [ngClass]="'ng-select'" [options]="searchableselect" > </ng-select>  
                                                           <span class="help-block"> Country where organization is Registered</span> 
                                                       </div>
                                                   </div>
@@ -197,10 +194,8 @@
                                                   <div class="form-group">
                                                       <label class="control-label col-md-3">Status</label>
                                                       <div class="col-md-9">
-                                                          <select name="status" class="form-control" required="">
-                                                              <option selected value="">Select ...</option>
-                                                              <option value="active">active</option><option value="inactive">inactive</option><option value="pending">pending</option><option value="cancelled">cancelled</option><option value="suspended">suspended</option>
-                                                          </select>
+                                                        <ng-select [ngClass]="'ng-select'" [options]="organizationStatusselect" > </ng-select>  
+                                                          
                                                           <span class="help-block"> Organization status</span> 
                                                       </div>
                                                   </div>

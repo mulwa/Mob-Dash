@@ -2,7 +2,7 @@
   <div class="col-lg-12">
       <div class="white-box">          
                   <div class="panel panel-warning">                          
-                          <div class="panel-heading">NEW VEHICLE</div>
+                          <div class="panel-heading">NEW jj VEHICLE</div>
                           <div class="panel-wrapper collapse in" aria-expanded="true">
                               <div class="panel-body">
                                   <form action="#" class="form-horizontal" method="POST">
@@ -25,10 +25,9 @@
                                                   <div class="form-group">
                                                       <label class="control-label col-md-3">Company/SACCO</label>
                                                       <div class="col-md-9">
-                                                          <select name="psv_operator" class="form-control select2" required="">
-                                                              <option selected value="">Select ...</option>
-                                                              <option value="Kenya Railways">Kenya Railways</option><option value="Nawasuku Sacco Society Ltd">Nawasuku Sacco Society Ltd</option><option value="Great Rift">Great Rift</option><option value="Mobi Express">Mobi Express</option><option value="Bomet County">Bomet County</option><option value="ELDORET SHUTTLE SACCO">ELDORET SHUTTLE SACCO</option><option value="Mbita Ferry Limited">Mbita Ferry Limited</option><option value="Shuttle Sacco ">Shuttle Sacco </option><option value="Prestige Shuttles Tours and Travel Company Limited">Prestige Shuttles Tours and Travel Company Limited</option><option value="Mbukoni Holdings Limited">Mbukoni Holdings Limited</option><option value="Integrity Intercity Limited">Integrity Intercity Limited</option><option value="ENA Investments Limited">ENA Investments Limited</option><option value="Web Tribe Limited">Web Tribe Limited</option><option value="NENO SACCO SOCIETY LIMITED">NENO SACCO SOCIETY LIMITED</option><option value="Mobile And Web App Solutions Center Ltd">Mobile And Web App Solutions Center Ltd</option>
-                                                          </select>
+                                                        <ng-select [ngClass]="'ng-select'" [options]="searchableOperator" > </ng-select>                        
+
+                                                          
                                                           <span class="help-block">Select company/SACCO</span> 
                                                       </div>
                                                   </div>
@@ -89,8 +88,8 @@
                                                       <label class="control-label col-md-3">Registration Type</label>
                                                       <div class="col-md-9">
                                                           <select name="registration_type" class="form-control" required="">
-                                                              <option selected value="">Select ...</option>
-                                                              <option value="intercity">intercity</option><option value="intracity">intracity</option><option value="cab">cab</option><option value="hire">hire</option><option value="bodaboda">bodaboda</option>
+                                                              <option selected value="">Select ...</option> 
+                                                              <option *ngFor="let item of vehicleType" value="{{item.id}}">{{item.name}}</option>
                                                           </select>
                                                           <span class="help-block"> intercity, intracity, cab, bodaboda </span> 
                                                       </div>
@@ -103,7 +102,7 @@
                                                       <div class="col-md-9">
                                                           <select name="account_status" class="form-control" required="">
                                                               <option selected value="">Select ...</option>
-                                                              <option value="active">active</option><option value="inactive">inactive</option><option value="suspended">suspended</option>
+                                                              <option *ngFor="let item of vehicleStatus" value="{{item.id}}">{{item.name}}</option>
                                                           </select>
                                                           <span class="help-block"> Status of the vehicle </span> 
                                                       </div>
@@ -120,10 +119,9 @@
                                                   <div class="form-group">
                                                       <label class="control-label col-md-3">Settlement Channel</label>
                                                       <div class="col-md-9">
-                                                          <select name="settlement_channel" class="form-control" required="">
-                                                              <option selected value="">Select ...</option>
-                                                              <option value="Engen Kahawa - ENERSENSE SOLUTIONS LTD [711784]">Engen Kahawa - ENERSENSE SOLUTIONS LTD</option><option value="U &amp; I Microfinance Bank Ltd [509900]">U &amp; I Microfinance Bank Ltd</option><option value="SBM BANK KENYA [552800 ]">SBM BANK KENYA</option><option value="Commercial Bank of Africa Ltd [880100]">Commercial Bank of Africa Ltd</option><option value="JAMBOPAY E-WALLET [530100]">JAMBOPAY E-WALLET</option><option value="Vision Fund Kenya [200555]">Vision Fund Kenya</option><option value="Uwezo [533900]">Uwezo</option><option value="UBA Bank [559900]">UBA Bank</option><option value="Transnational Bank [862862]">Transnational Bank</option><option value="Standard Chartered Bank [329329]">Standard Chartered Bank</option><option value="Stanbic Bank [600100]">Stanbic Bank</option><option value="SPIRE BANK [498100]">SPIRE BANK</option><option value="SMEP MICROFINANCE BANK [777001]">SMEP MICROFINANCE BANK</option><option value="RAFIKI MICROFINANCE BANK [802200]">RAFIKI MICROFINANCE BANK</option><option value="Prime Bank [982800]">Prime Bank</option><option value="Post Office Savings Bank [200999]">Post Office Savings Bank</option><option value="NIC Bank [488488]">NIC Bank</option><option value="National Bank [547700]">National Bank</option><option value="Musoni Kenya [514000]">Musoni Kenya</option><option value="KENYA WOMEN MICROFINANCE BANK [101200]">KENYA WOMEN MICROFINANCE BANK</option><option value="KCB (Kenya Commercial Bank) [522522]">KCB (Kenya Commercial Bank)</option><option value="Jamii Bora [529901]">Jamii Bora</option><option value="Imperial Bank [800100]">Imperial Bank</option><option value="IM Bank [542542]">IM Bank</option><option value="HFC (Housing Finance) [100400]">HFC (Housing Finance)</option><option value="First Community Bank [919700]">First Community Bank</option><option value="FAULU KENYA [328585]">FAULU KENYA</option><option value="Family Bank [222111]">Family Bank</option><option value="Equity Bank [247247]">Equity Bank</option><option value="Ecobank [700201]">Ecobank</option><option value="Diamond Trust Bank [516600]">Diamond Trust Bank</option><option value="Credit Bank [972700]">Credit Bank</option><option value="Co-operative Bank [400200]">Co-operative Bank</option><option value="Barclays Bank [303030]">Barclays Bank</option><option value="Equitel [4]">Equitel</option><option value="T-Kash [3]">T-Kash</option><option value="Airtel Money [2]">Airtel Money</option><option value="MPESA [1]">MPESA</option>
-                                                          </select>
+                                                            <ng-select [ngClass]="'ng-select'" [options]="settlementOption" > </ng-select>                        
+                                                              
+                                                          
                                                       </div>
                                                   </div>
                                               </div>
@@ -152,7 +150,7 @@
                                                        <div class="col-md-9">
                                                           <select name="transaction_charge_type" class="form-control" required="">
                                                               <option selected value="">Select ...</option>
-                                                              <option value="flat">flat</option><option value="percentage">percentage</option>
+                                                              <option *ngFor="let item of transacrionChargeType" value="{{item.id}}">{{item.name}}</option>
                                                           </select>
                                                       </div>
                                                   </div>
@@ -175,7 +173,7 @@
                                                       <div class="col-md-9">
                                                           <select name="transaction_charge_band" class="form-control" required="">
                                                               <option selected value="">Select ...</option>
-                                                              <option value="Passenger 100%">Passenger 100%</option><option value="Company 100%">Company 100%</option><option value="Hybrid: Passenger 20%, Company 80%">Hybrid: Passenger 20%, Company 80%</option><option value="Hybrid: Passenger 80%, Company 20%">Hybrid: Passenger 80%, Company 20%</option>
+                                                              <option *ngFor="let item of transactionChargeband" value = "{item.id}">{{item.name}}</option>
                                                           </select>
                                                       </div>
                                                   </div>
@@ -190,7 +188,7 @@
                                                    <div class="col-md-9">
                                                       <select name="charge_type" class="form-control" required="">
                                                           <option selected value="">Select ...</option>
-                                                          <option value="1">1</option><option value="2">2</option>
+                                                          <option *ngFor="let item of transacrionChargeType" value="{{item.id}}">{{item.name}}</option>
                                                       </select>
                                                   </div>
                                               </div>
@@ -221,5 +219,6 @@
                           </div>
                       </div>                        </div>
   </div>
+  herere : {{settlement}}
 </div>
 <!-- /.row -->

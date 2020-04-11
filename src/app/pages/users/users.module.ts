@@ -4,6 +4,7 @@ import { NewUserComponent } from "./new-user/new-user.component";
 import { ManageUserComponent } from "./manage-user/manage-user.component";
 import { Routes, RouterModule } from "@angular/router";
 import { SharedModule } from "../../shared/shared.module";
+import { OperatorService } from "../../services/operator.service";
 
 const userRoute: Routes = [
   {
@@ -15,6 +16,7 @@ const userRoute: Routes = [
 @NgModule({
   imports: [CommonModule, SharedModule, RouterModule.forChild(userRoute)],
 
-  declarations: [NewUserComponent]
+  declarations: [NewUserComponent],
+  providers: [OperatorService]
 })
 export class UsersModule {}

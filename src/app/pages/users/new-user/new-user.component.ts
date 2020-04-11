@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { TicketingService } from "../../../services/ticketing.service";
+import { OperatorService } from "../../../services/operator.service";
 
 @Component({
   selector: "app-new-user",
@@ -8,24 +9,22 @@ import { TicketingService } from "../../../services/ticketing.service";
 })
 export class NewUserComponent implements OnInit {
   searchableselect;
+  searchableOperator;
 
-  constructor(private ticketingService: TicketingService) {}
+  constructor(
+    private ticketingService: TicketingService,
+    private operatorService: OperatorService
+  ) {}
 
   ngOnInit() {
-    this.getCity();
+    this.getAllOperators();
   }
 
-  getCity() {
-    this.ticketingService.getCitites().subscribe(
-      data => {
-        // this.cities = data.cities;
-        // console.log(this.searchableselect)
-        this.searchableselect = this.ticketingService.cloneOptions(data.cities);
-        console.log(this.searchableselect);
-      },
-      error => {
-        console.log(`An Error has Occured ${error.message}`);
-      }
-    );
+  getAllOperators() {
+    this.operatorService.getAllOperators().subscribe(res => {
+      this.searchableOperator = this.operatorService.cloneAllOperatorOptions(
+        res.psv_operators
+      );
+    });
   }
 }
